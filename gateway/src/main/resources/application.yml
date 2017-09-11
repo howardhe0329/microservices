@@ -1,0 +1,40 @@
+info:
+  app:
+    name: Gateway
+    description: API网关服务
+    owner:
+      - 贺斌
+    emails:
+      - howard.he0329@gmail.com
+
+server:
+  port: 5555
+
+endpoints:
+  info:
+    sensitive: false
+  health:
+    sensitive: false
+  beans:
+    sensitive: false
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    metadata-map:
+      instance-id: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    prefer-ip-address: true
+
+zuul:
+  routes:
+    passport:
+      path: /passport/**
+      serviceId: Passport

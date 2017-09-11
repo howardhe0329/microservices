@@ -1,0 +1,35 @@
+info:
+  app:
+    name: Discovery
+    description: 服务注册中心
+    owner:
+      - 贺斌
+    emails:
+      - howard.he0329@gmail.com
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+  instance:
+    hostname: discovery
+
+endpoints:
+  info:
+    sensitive: false
+  health:
+    sensitive: false
+  beans:
+    sensitive: false
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+
+
+
